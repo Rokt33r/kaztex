@@ -1,0 +1,12 @@
+div.side-bar{
+	background-color:#444;
+	color:white;
+	padding-bottom:100%;
+}
+
+div.side-bar h1{
+	font-size:1.4em;
+}
+div.side-bar h2{
+	font-size:1.1em;
+}

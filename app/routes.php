@@ -11,7 +11,28 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
+
+// Index
+Route::get('/', ['uses'=>'HomeController@index', 'as'=>'index']);
+
+// Sign in
+Route::post('sessions',
+	['uses'=>'SessionsController@store', 'as'=>'sessions.store']);
+
+Route::get('signin', ['uses'=>'SessionsController@create','as'=>'signin']);
+Route::get('sessions/create',
+	['uses'=>'SessionsController@create', 'as'=>'sessions.create']);
+
+// Sign out
+Route::get('signout', ['uses'=>'SessionsController@destroy', 'as'=>'signout']);
+Route::delete('sessions', ['uses'=>'SessionsController@destroy', 'as'=>'sessions.destroy']);
+
+// Sign up
+Route::get('signup', ['uses'=>'SignUpController@create', 'as'=>'signup.create']);
+Route::post('signup', ['uses'=>'SignUpController@store', 'as'=>'signup.store']);
+
+
+Route::get('test', function(){
+	$user = User::find(1);
+	return $user->posts;
 });
