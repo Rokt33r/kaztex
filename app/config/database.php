@@ -54,7 +54,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'maisindb.cqaholfxjvp4.ap-northeast-1.rds.amazonaws.com:3306',
+			'host'      => 'maisindb.cqaholfxjvp4.ap-northeast-1.rds.amazonaws.com',
 			'database'  => 'kaztex',
 			'username'  => 'maisin',
 			'password'  => 'amerikaikitai',
