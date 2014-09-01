@@ -31,7 +31,21 @@ Route::delete('sessions', ['uses'=>'SessionsController@destroy', 'as'=>'sessions
 Route::get('signup', ['uses'=>'SignUpController@create', 'as'=>'signup.create']);
 Route::post('signup', ['uses'=>'SignUpController@store', 'as'=>'signup.store']);
 
+Route::group(array('before' => 'auth'), function(){
+	Route::post('apis/posts/make',
+		['uses'=>'PostApiController@make', 'as'=>'apis.posts.make']);
+	Route::get('apis/posts/{post_id}',
+		['uses'=>'PostApiController@show', 'as'=>'apis.posts.show']);
+	Route::delete('apis/posts/{post_id}',
+		['uses'=>'PostApiController@destroy', 'as'=>'apis.posts.destroy']);
+	Route::put('apis/posts/{post_id}/body',
+		['uses'=>'PostApiController@editBody', 'as'=>'apis.posts.edit.body']);
+	Route::put('apis/posts/{post_id}/title',
+		['uses'=>'PostApiController@editTitle', 'as'=>'apis.posts.edit.title']);
+	Route::put('apis/posts/{post_id}/drawings',
+		['uses'=>'PostApiController@editDrawings', 'as'=>'apis.posts.edit.drawings']);
 
+});
 Route::get('test', function(){
 	$user = User::find(1);
 	return $user->posts;

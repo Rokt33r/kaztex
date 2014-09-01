@@ -8,7 +8,7 @@
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="#">KazTex <small>prototype</small></a>
+	<a class="navbar-brand"  id="brand" href="#">KazTex <small>prototype</small></a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
