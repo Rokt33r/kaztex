@@ -22,10 +22,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => 'maisindb.cqaholfxjvp4.ap-northeast-1.rds.amazonaws.com',
 			'database'  => 'kaztex',
-			'username'  => 'root',
-			'password'  => 'root',
+			'username'  => 'maisin',
+			'password'  => 'amerikaikitai',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

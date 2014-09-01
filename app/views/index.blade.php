@@ -112,7 +112,8 @@ listMyNotes = $("#list-my-notes");
 
 function addPostToMyNotesList(post){
 	var item = $("<li></li>").html(post.title).attr("data-post-id", post.id);
-	item.prependTo(listMyNotes).click(clickPostItem);;
+	item.prependTo(listMyNotes).click(clickPostItem);
+	$("#empty-item").remove();
 }
 function deletePostFromMyNotesList(post){
 	var id = post.id;
@@ -621,7 +622,7 @@ brand.click(function(){
 				<h2>My notes</h2>
 				<ul id="list-my-notes">
 				@if(Auth::user()->posts->isEmpty())
-					<li>
+					<li id="empty-item">
 						Empty...
 					</li>
 				@else
