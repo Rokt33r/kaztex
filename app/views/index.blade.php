@@ -86,6 +86,7 @@ btnModalMakeConfirm.click(function(){
 				previewTitle.html(post.title);
 				editorView.attr("data-post-title", post.title);
 				editorView.attr("data-post-id", post.id);
+				selectedPostId = post.id;
 				activateView(editorView);
 				addPostToMyNotesList(post);
 				modalMakePost.modal('hide');
@@ -496,6 +497,7 @@ btnModalDeleteConfirm.click(function(){
 			deletePostFromMyNotesList(res.data.post);
 			selectedPostId = null;
 			activateView(welcomeView);
+			modalDeletePost.modal('hide');
 		}
 	});
 });
