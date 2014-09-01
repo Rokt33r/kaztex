@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('*.dev', gethostname()),
+	'local' => array('*.dev'),
     'production' => array('kaztex.kazup.co'),
 
 ));
