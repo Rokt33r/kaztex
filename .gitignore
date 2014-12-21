@@ -2,4 +2,8 @@
 composer.lock
 .env
 .env.*
-.idea
+
+build/
+node_modules/
+angular/**/vendor
+.idea/

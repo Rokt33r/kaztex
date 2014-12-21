@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="so-staff">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <% styles.forEach(function(file){ %>
+    <link rel="stylesheet" type="text/css" href="/app/<%= file%>"/>
+    <% }); %>
+</head>
+<body>
+
+<div class="wrap">
+    <ui-view></ui-view>
+</div>
+<% scripts.forEach(function(file){ %>
+<script type="text/javascript" src="/app/<%= file %>"></script>
+<% }); %>
+
+<script type="text/javascript">
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+</script>
+</body>
+</html>
