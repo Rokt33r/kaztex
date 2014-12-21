@@ -1,4 +1,4 @@
-<?php namespace App\Http\Requests;
+<?php namespace Kaztex\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
