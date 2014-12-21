@@ -13,6 +13,7 @@ var watchTasks = [];
 var fetchTasks = [];
 
 for(var key in angular){
+	
 	var app = angular[key];
 
 	gulp.task('fetch-' + key, function(){
