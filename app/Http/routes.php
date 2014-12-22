@@ -13,7 +13,15 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+get('register', ['uses'=>'RegisterController@create', 'as'=>'register']);
+post('register', ['uses'=>'RegisterController@store', 'as'=>'register']);
+
+get('home', ['uses'=>'HomeController@index', 'as'=>'home']);
+
+
+get('test', function(){
+	return app('auth')->user();
+});
 
 /*
 |--------------------------------------------------------------------------

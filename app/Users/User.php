@@ -1,4 +1,4 @@
-<?php namespace Kaztex;
+<?php namespace Kaztex\Users;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

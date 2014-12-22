@@ -7,3 +7,4 @@ build/
 node_modules/
 angular/**/vendor
 .idea/
+tests/_output/*

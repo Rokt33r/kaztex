@@ -1,4 +1,4 @@
-//var elixir = require('laravel-elixir');
+var elixir = require('laravel-elixir');
 var gulp = require('gulp');
 var shell = require('gulp-shell');
 var angular = require('./angular.config.js');
@@ -20,5 +20,10 @@ for(var key in angular){
 	buildTasks.push('build-' + key);
 }
 
-gulp.task('watch', watchTasks);
+gulp.task('build-watch', watchTasks);
 gulp.task('build', buildTasks);
+
+
+elixir(function(mix) {
+	mix.sass("app.scss");
+});

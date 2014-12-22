@@ -1,6 +1,6 @@
 <?php namespace Kaztex\Services;
 
-use Kaztex\User;
+use Kaztex\Users\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
