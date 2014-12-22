@@ -15,3 +15,4 @@ $I->click('Sign Up');
 
 $I->seeRecord('users', ['name'=>'John Doe']);
 $I->seeAuthentication();
+$I->seeCurrentUrlEquals('app');

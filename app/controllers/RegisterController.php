@@ -20,7 +20,7 @@ class RegisterController extends BaseController{
 
         Auth::login($user);
 
-        return Redirect::intended('/');
+        return Redirect::intended('app');
     }
 
 }

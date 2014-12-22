@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="kaztex-main">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    
+</head>
+<body>
+
+
+<div class="wrap">
+    <ui-view></ui-view>
+</div>
+
+<script type="text/javascript" src="vendor/lodash/dist/lodash.js"></script>
+
+<script type="text/javascript" src="vendor/angular/angular.js"></script>
+
+<script type="text/javascript" src="vendor/angular-animate/angular-animate.js"></script>
+
+<script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+
+<script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+<script type="text/javascript" src="vendor/fastclick/lib/fastclick.js"></script>
+
+<script type="text/javascript" src="src/app/app.js"></script>
+
+<script type="text/javascript" src="templates-app.js"></script>
+
+<script type="text/javascript" src="bundle.js"></script>
+
+
+<script type="text/javascript">
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function() {
+            FastClick.attach(document.body);
+        }, false);
+    }
+</script>
+</body>
+</html>

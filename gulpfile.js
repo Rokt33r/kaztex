@@ -4,32 +4,32 @@ var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 
 /**
- * Build and Copy Angular Apps
+ * fetch and Copy Angular Apps
  **/
 var shell = require('gulp-shell');
 var angular = require('./angular.config.js');
 
 var watchTasks = [];
-var buildTasks = [];
+var fetchTasks = [];
 
 for(var key in angular){
 	var app = angular[key];
 
-	gulp.task('build-' + key, function(){
+	gulp.task('fetch-' + key, function(){
 		gulp.src(app.from + '/**/*')
 			.pipe(gulp.dest(app.to));
 	});
-	buildTasks.push('build-' + key);
+	fetchTasks.push('fetch-' + key);
 
 	gulp.task('watch-' + key, function(){
-		gulp.watch( app.from + '/**/*', ['build'+key]);
+		gulp.watch( app.from + '/**/*', ['fetch'+key]);
 	});
 	watchTasks.push('watch-' + key);
 
 }
 
-gulp.task('build-watch', watchTasks);
-gulp.task('build', buildTasks);
+gulp.task('watch-ng', watchTasks);
+gulp.task('fetch', fetchTasks);
 
 
 /**
@@ -44,6 +44,12 @@ gulp.task('css', function(){
 		.pipe(gulp.dest('public/css'))
 });
 
-gulp.task('watch', function(){
+gulp.task('watch-css', function(){
 	gulp.watch('app/assets/sass/**/*.scss', ['css']);
 });
+
+/**
+ * Process All & Watch All
+ **/
+gulp.task('watch', ['watch-ng', 'watch-css']);
+gulp.task('default', ['fetch', 'css']);
