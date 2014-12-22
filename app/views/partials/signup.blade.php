@@ -25,7 +25,8 @@
 </div>
 
 <div class="form-group">
-    {{Form::submit('Sign Up')}}
+    {{Form::submit('Sign Up', ['class'=>'btn btn-primary'])}}
+    {{link_to_route('signin', 'Sign In', null, ['class'=>'btn btn-default'])}}
 </div>
 
 {{Form::close()}}

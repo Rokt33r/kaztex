@@ -12,6 +12,7 @@ class RegisterController extends BaseController{
     }
 
     public function create(){
+        return View::make('register.create');
 
     }
 
@@ -20,7 +21,7 @@ class RegisterController extends BaseController{
 
         Auth::login($user);
 
-        return Redirect::intended('app');
+        return Redirect::intended('/app');
     }
 
 }
