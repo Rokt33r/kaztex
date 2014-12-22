@@ -1,2 +1,30 @@
 @import 'bootstrap';
 @import 'variables';
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.welcome{
+    .catch{
+        text-align: right;
+        font-size:1.6em;
+        padding-right:50px;
+        h1{
+            font-size: 3em;
+        }
+        p{
+            font-size: 1.5em;
+        }
+    }
+    .about{
+        text-align:center;
+    }
+}
+
+.errors{
+    h3{
+        margin:0px 0px 10px;
+    }
+
+}
