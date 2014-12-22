@@ -2,6 +2,8 @@
 
 {{Form::open(['route'=>'register', 'method'=>'post'])}}
 
+@include('partials.errors')
+
 <div class="form-group">
     {{Form::label('name', 'Username')}}
     {{Form::text('name', null, ['class'=>'form-control'])}}

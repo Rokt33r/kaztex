@@ -51,6 +51,13 @@ App::error(function(Exception $exception, $code)
 	Log::error($exception);
 });
 
+App::error(function(\Kaztex\Core\InvalidInputException $e){
+	if(Request::ajax()){
+		return $e->getErrors();
+	}
+	return Redirect::back()->withInput()->withErrors($e->getErrors());
+});
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
