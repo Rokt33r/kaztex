@@ -16,10 +16,16 @@ class SessionsController extends BaseController{
         $result = $this->execute(SignInCommand::class);
 
         if(!$result){
-            return Redirect::back()->withInput();
+            return Redirect::back()->withInput()->withErrors(['message'=>'Certifications are\'t valid.']);
         }
 
         return Redirect::intended('/app');
+    }
+
+    public function destroy(){
+        Auth::logout();
+
+        return Redirect::to('/');
     }
 
 }

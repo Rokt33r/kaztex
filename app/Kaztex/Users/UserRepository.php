@@ -13,7 +13,7 @@ class UserRepository {
         $user = $this->user->create([
             'email'=>$email,
             'name'=>$name,
-            'password'=>\Hash::make($password)
+            'password'=>$password
         ]);
 
         return $user;
