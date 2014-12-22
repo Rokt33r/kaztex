@@ -5,7 +5,7 @@ use Kaztex\Users\SignInCommand;
 class SessionsController extends BaseController{
 
     public function __construct(){
-
+        $this->beforeFilter('guest', ['except'=>['destroy']]);
     }
 
     public function create(){

@@ -9,6 +9,7 @@ class RegisterController extends BaseController{
 
     public function __construct(UserRepository $user){
         $this->user = $user;
+        $this->beforeFilter('guest', []);
     }
 
     public function create(){
