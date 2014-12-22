@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html ng-app="kaztex-main">
+<html ng-app="kaztex">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
     <% styles.forEach(function(file){ %>
-    <link rel="stylesheet" type="text/css" href="/app/<%= file%>"/>
+    <link rel="stylesheet" type="text/css" href="/<%= file%>"/>
     <% }); %>
+
 </head>
 <body>
 
 
 <div class="wrap">
+    <top-nav></top-nav>
     <ui-view></ui-view>
 </div>
+
 <% scripts.forEach(function(file){ %>
 <script type="text/javascript" src="<%= file %>"></script>
 <% }); %>

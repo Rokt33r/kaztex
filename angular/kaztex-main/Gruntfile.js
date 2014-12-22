@@ -28,7 +28,18 @@ module.exports = function(grunt) {
                         expand: true
                     }
                 ]
+            },
+            assets: {
+                files: [
+                    {
+                        src: ['<%= vendor_files.css %>', '<%= vendor_files.other %>'],
+                        dest: '<%= build_dir %>',
+                        cwd: '.',
+                        expand: true
+                    }
+                ]
             }
+
         },
 
         watch: {
@@ -36,7 +47,7 @@ module.exports = function(grunt) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: ['copy', 'index']
+                tasks: ['copy:appjs', 'index']
             },
             atpl: {
                 files: [
@@ -75,8 +86,9 @@ module.exports = function(grunt) {
                     '<%= vendor_files.js %>',
                     '<%= build_dir %>/src/**/*.js',
                     '<%= html2js.app.dest %>',
+                    '<%= vendor_files.css %>',
                     '<%= build_dir %>/bundle.js',
-                    '<%= build_dir %>/assets/**/*.css'
+                    '<%= build_dir %>/**/*.css'
                 ]
             }
         },
@@ -107,7 +119,7 @@ module.exports = function(grunt) {
             },
             dist:{
                 files: {
-                    'main.css': 'main.scss'
+                    '<%= build_dir %>/main.css': 'src/scss/main.scss'
                 }
             }
         },
