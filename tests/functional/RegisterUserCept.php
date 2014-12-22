@@ -1,4 +1,4 @@
-<?php 
+<?php
 $I = new FunctionalTester($scenario);
 
 $I->am('a user');
@@ -13,5 +13,5 @@ $I->fillField('password', 'secret');
 $I->fillField('password_confirmation', 'secret');
 $I->click('Sign Up');
 
-$I->amOnRoute('home');
 $I->seeRecord('users', ['name'=>'John Doe']);
+$I->seeAuthentication();

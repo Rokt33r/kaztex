@@ -1,0 +1,24 @@
+{
+  "name": "kaztex",
+  "version": "0.0.1",
+  "authors": [
+    "Dick Choi <fluke8259@gmail.com>"
+  ],
+  "description": "Kaztex Web Application",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "NONE",
+  "homepage": "kazup.co",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.1"
+  }
+}
