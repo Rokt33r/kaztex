@@ -8,6 +8,7 @@ angular.module('kaztex.core.auth', [])
 			.error(function(data, status, headers, config){
 				if(status===401){
 					$location.path('/signin');
+					location.pathname = 'signin';
 				}else{
 					$log.error('data');
 				}
