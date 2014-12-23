@@ -13,3 +13,8 @@ Route::get('signout', ['uses'=>'SessionsController@destroy', 'as'=>'signout']);
 Route::get('sessions', ['uses'=>'SessionsController@create', 'as'=>'sessions']);
 Route::post('sessions', ['uses'=>'SessionsController@store', 'as'=>'sessions']);
 Route::delete('sessions', ['uses'=>'SessionsController@destroy', 'as'=>'sessions']);
+
+
+Route::group(['prefix'=>'apis'], function(){
+    Route::get('user', ['uses'=>'UserController@index', 'as'=>'user']);
+});

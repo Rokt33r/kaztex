@@ -40,6 +40,7 @@
 	"require-dev": {
 		"codeception/codeception":"2.0.*@dev",
 		"laracasts/testdummy":"~1.0",
-		"fzaninotto/faker": "1.4.*"
+		"fzaninotto/faker": "1.4.*",
+		"flow/jsonpath": "~0.1"
 	}
 }

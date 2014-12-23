@@ -1,3 +1,0 @@
-class_name: RestTester
-modules:
-    enabled: [RestHelper, Laravel4, Asserts]

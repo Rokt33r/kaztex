@@ -1,0 +1,6 @@
+class_name: AppTester
+modules:
+    enabled: [AppHelper, Laravel4, Asserts, REST]
+    config:
+        Laravel4:
+            environment: local
