@@ -71,7 +71,7 @@ module.exports = function(grunt) {
             },
             sass: {
                 files: 'src/scss/**/*.scss',
-                tasks: ['sass:dev']
+                tasks: ['sass']
             },
             index: {
                 files: 'src/index.html',
@@ -172,7 +172,7 @@ module.exports = function(grunt) {
         var jsFiles = filterForExtension('js', this.filesSrc);
         var cssFiles = filterForExtension('css', this.filesSrc);
 
-        grunt.log.writeln(this.filesSrc);
+        //grunt.log.writeln(this.filesSrc);
 
         grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
             process: function (contents, path) {

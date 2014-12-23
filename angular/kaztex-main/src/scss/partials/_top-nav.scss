@@ -1,0 +1,25 @@
+@import "../bootstrap";
+@import "../variables";
+
+top-nav{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:50px;
+    border-bottom:solid 1px $top-nav-border;
+    .header{
+        @extend .navbar-header;
+
+        .brand{
+            @extend .navbar-brand;
+        }
+    }
+
+    .nav{
+        .dropdown-icon{
+            font-size:1.2em;
+        }
+    }
+
+}

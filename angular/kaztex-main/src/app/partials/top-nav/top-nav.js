@@ -1,10 +1,9 @@
-angular.module('kaztex.partials.top-nav', [])
-	.controller('NavController', function($scope){
-		$scope.message = ' /  hello!!';
-		this.msg = 'msg fr ctrl'
+angular.module('kaztex.partials.top-nav', ['ui.bootstrap'])
+	.controller('NavController', function(){
+
 	})
 	.directive('topNav', function(){
 		return {
-			template: '<div ng-controller="NavController as nav">Top Nav{{message}} {{nav.msg}}</div>'
+			templateUrl: 'partials/top-nav/top-nav.tpl.html'
 		};
 	});
