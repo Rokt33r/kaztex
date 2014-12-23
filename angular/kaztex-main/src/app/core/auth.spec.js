@@ -1,5 +1,5 @@
 describe("kaztex.core.auth", function (){
-	var auth, $httpBackend, $location;
+	var auth, $httpBackend, $location, $rootScope;
 
 	var user = {
 		name:'John Doe',
@@ -23,6 +23,7 @@ describe("kaztex.core.auth", function (){
 
 		$location = $injector.get('$location');
 
+		$rootScope = $injector.get('$rootScope');
 	}));
 
 	it('should have setter & getter for user', function(){
@@ -53,5 +54,13 @@ describe("kaztex.core.auth", function (){
 		$httpBackend.flush();
 
 		expect($location.path).toHaveBeenCalledWith('/signin');
+	});
+
+	it('should fire event when user info fetched', function(){
+		spyOn($rootScope, '$emit');
+
+		$httpBackend.flush();
+
+		expect($rootScope.$emit).toHaveBeenCalledWith('auth:userFetched');
 	});
 });

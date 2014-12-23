@@ -14,6 +14,7 @@ module.exports = {
             'vendor/angular-animate/angular-animate.js',
             'vendor/angular-ui-router/release/angular-ui-router.js',
             'vendor/angular-bootstrap/ui-bootstrap-tpls.js',
+            'vendor/angular-md5/angular-md5.js',
             'vendor/fastclick/lib/fastclick.js'
         ],
         css: [

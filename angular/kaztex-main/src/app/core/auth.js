@@ -1,9 +1,10 @@
 angular.module('kaztex.core.auth', [])
-	.run(function($http, $location, auth){
+	.run(function($http, $location, auth, $rootScope){
 		$http.get('/apis/user')
 			.success(function(data, status, headers, config){
 				var user = data.user;
 				auth.setUser(user);
+				$rootScope.$emit('auth:userFetched');
 		})
 			.error(function(data, status, headers, config){
 				if(status===401){
