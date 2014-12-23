@@ -11,3 +11,5 @@ Thumbs.db
 tests/_output/*
 .idea/
 tests/_output/*
+
+public/app
