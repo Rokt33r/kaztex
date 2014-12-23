@@ -25,8 +25,9 @@ for(var key in angular){
 	copyTasks.push('copy-' + key);
 
 	gulp.task('watch-' + key, function(){
-		gulp.watch( app.from + '/**/*', batch(function(){
+		gulp.watch( app.from + '/**/*', batch({timeout:200}, function(events, done){
 			gulp.start('copy-' + key);
+			done();
 		}));
 	});
 	watchTasks.push('watch-' + key);

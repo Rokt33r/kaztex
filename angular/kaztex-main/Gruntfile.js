@@ -57,7 +57,7 @@ module.exports = function(grunt) {
             },
             html: {
                 files: ['<%= app_files.js %>'],
-                tasks: [ 'index:build'],
+                tasks: ['index:build']
             },
             gruntfile: {
                 files: 'Gruntfile.js',
@@ -141,7 +141,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             dev: {
-                tasks: ['nodemon', 'karma', 'watch'],
+                tasks: ['karma', 'watch'],
 
                 options: {
                     logConcurrentOutput: true
