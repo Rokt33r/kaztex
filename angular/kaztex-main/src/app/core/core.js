@@ -1,4 +1,3 @@
 angular.module('kaztex.core', [
-	'kaztex.core.auth',
-	'kaztex.core.http'
+	'kaztex.core.auth'
 ]);

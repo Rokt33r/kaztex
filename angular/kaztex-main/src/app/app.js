@@ -12,6 +12,12 @@ angular.module('kaztex', [
 
     // states
     'kaztex.editor'
-]).run(function($state){
-    $state.go('editor');
+])
+    .config(function($httpProvider){
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With']
+    })
+
+    .run(function($state){
+        $state.go('editor');
 });

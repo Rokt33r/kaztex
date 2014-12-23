@@ -16,5 +16,5 @@ Route::delete('sessions', ['uses'=>'SessionsController@destroy', 'as'=>'sessions
 
 
 Route::group(['prefix'=>'apis'], function(){
-    Route::get('user', ['uses'=>'UserController@index', 'as'=>'user']);
+    Route::get('user', ['uses'=>'UserController@index', 'as'=>'apis.user']);
 });
