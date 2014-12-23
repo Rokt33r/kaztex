@@ -1,40 +1,44 @@
 var gulp = require('gulp');
+var batch = require('gulp-batch');
+var shell = require('gulp-shell');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 
+
 /**
- * fetch and Copy Angular Apps
+ * Copy Angular Apps
  **/
-var shell = require('gulp-shell');
 var angular = require('./angular.config.js');
 
 var watchTasks = [];
-var fetchTasks = [];
+var copyTasks = [];
 
 for(var key in angular){
 	
 	var app = angular[key];
 
-	gulp.task('fetch-' + key, function(){
+	gulp.task('copy-' + key, function(){
 		gulp.src(app.from + '/**/*')
 			.pipe(gulp.dest(app.to));
 	});
-	fetchTasks.push('fetch-' + key);
+	copyTasks.push('copy-' + key);
 
 	gulp.task('watch-' + key, function(){
-		gulp.watch( app.from + '/**/*', ['fetch'+key]);
+		gulp.watch( app.from + '/**/*', batch(function(){
+			gulp.start('copy-' + key);
+		}));
 	});
 	watchTasks.push('watch-' + key);
 
 }
 
 gulp.task('watch-ng', watchTasks);
-gulp.task('fetch', fetchTasks);
+gulp.task('copy', copyTasks);
 
 
 /**
- * SCSS->CSS for Laravel App
+ * Process SCSS for Laravel App
  **/
 
 gulp.task('css', function(){
@@ -53,4 +57,4 @@ gulp.task('watch-css', function(){
  * Process All & Watch All
  **/
 gulp.task('watch', ['watch-ng', 'watch-css']);
-gulp.task('default', ['fetch', 'css']);
+gulp.task('default', ['copy', 'css']);
