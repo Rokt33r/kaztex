@@ -2,6 +2,7 @@ angular.module('kaztex', [
     // plugins
     'ui.router',
     'ui.bootstrap',
+    'angular-md5',
 
     // templates
     'templates-app',

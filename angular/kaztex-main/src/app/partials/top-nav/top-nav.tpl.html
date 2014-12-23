@@ -6,7 +6,7 @@
     <ul class="menu-right nav navbar-nav navbar-right">
 
         <li class="user-info">
-            <a><img class="user-photo" src="">{{nav.user.name}}</a>
+            <a><img class="user-photo" src="http://www.gravatar.com/avatar/{{ nav.user.email | gravatar }}?s=30"> {{nav.user.name}}</a>
         </li>
 
         <li class="top-nav-dropdown" dropdown>

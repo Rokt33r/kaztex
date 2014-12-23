@@ -1,4 +1,4 @@
-angular.module('kaztex.partials.top-nav', ['ui.bootstrap', 'kaztex.core.auth'])
+angular.module('kaztex.partials.top-nav', ['ui.bootstrap', 'kaztex.core.auth', 'angular-md5'])
 	.controller('TopNavController', function($rootScope, auth){
 		var nav = this;
 		nav.user = {};
