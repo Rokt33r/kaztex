@@ -81,4 +81,4 @@ $I->sendGET('/apis/user/files');
 $result = $I->grabDataFromResponseByJsonPath('$')[0];
 $I->assertEmpty($result, 'The storage should be empty.');
 
-Flysystem::deleteDir(storage_path()."/files/users/{$user->id}");
+Flysystem::deleteDir("/users/{$user->id}");
