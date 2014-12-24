@@ -19,5 +19,21 @@ $user = $I->signedIn();
  */
 
 $I->sendGET('/apis/user/files');
-$result = $I->grabDataFromResponseByJsonPath('$')[0];
+$result = $I->grabDataFromResponseByJsonPath('$.files')[0];
 $I->assertEmpty($result, 'The user should have empty storage when signed up');
+
+
+/**
+ * Return all files and directories
+ */
+
+Flysystem::write("/users/{$user->id}/dummy.file", 'This is a test file. :)');
+Flysystem::write("/users/{$user->id}/test/another.file", 'This is a test file. :)');
+
+$I->sendGET('/apis/user/files');
+$result = $I->grabDataFromResponseByJsonPath('$.files')[0];
+$I->assertEquals(3, count($result), 'Expect the size of array to be 3 because the user has 2 files and 1 directory.');
+
+
+// clean up
+Flysystem::deleteDir("/users/{$user->id}");

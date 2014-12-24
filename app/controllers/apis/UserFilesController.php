@@ -7,7 +7,7 @@ class UserFilesController extends BaseController{
 
         $rootDir = Flysystem::listContents("users/{$user->id}", true);
 
-        return $rootDir;
+        return ['files'=>$rootDir];
     }
 
 
