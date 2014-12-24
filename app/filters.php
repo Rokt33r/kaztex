@@ -43,8 +43,15 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('login');
+			return Redirect::to('signin');
 		}
+	}
+});
+
+Route::filter('auth.apis', function(){
+	if(Auth::guest()){
+		$response = ['message'=>'Not authorized'];
+		return Response::make($response, 401);
 	}
 });
 

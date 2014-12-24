@@ -15,6 +15,15 @@ Route::post('sessions', ['uses'=>'SessionsController@store', 'as'=>'sessions']);
 Route::delete('sessions', ['uses'=>'SessionsController@destroy', 'as'=>'sessions']);
 
 
-Route::group(['prefix'=>'apis'], function(){
+Route::group(['prefix'=>'apis', 'before'=>'auth.apis'], function(){
     Route::get('user', ['uses'=>'UserController@index', 'as'=>'apis.user']);
+
+    Route::get('user/files', ['uses'=>'UserFilesController@index', 'as'=>'apis.files']);
+
+    Route::get('user/files/{slag}', ['uses'=>'UserFilesController@show', 'as'=>'apis.files'])->where('slag', '[A-Za-z\/\_\.0-9\s\-]+');
+
+    Route::post('user/files/{slag?}', ['uses'=>'UserFilesController@store', 'as'=>'apis.files'])->where('slag', '[A-Za-z\/\_\.0-9\s\-]+');
+
+    Route::delete('user/files/{slag}', ['uses'=>'UserFilesController@destroy', 'as'=>'apis.files'])->where('slag', '[A-Za-z\/\_\.0-9\s\-]+');
+
 });
