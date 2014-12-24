@@ -14,11 +14,18 @@ class UserFilesController extends BaseController{
     public function show($slag){
         $user = Auth::user();
 
-        if(!Flysystem::has("users/{$user->id}/{$slag}")){
+        $path = "users/{$user->id}/{$slag}";
+
+        if(!Flysystem::has($path)){
             return Response::make(['file'=>null], 400);
         }
 
-        $file = Flysystem::get("users/{$user->id}/{$slag}");
+        if(Input::get('order')==='load'){
+            $data = Flysystem::read($path);
+            return ['data'=>$data];
+        }
+
+        $file = Flysystem::get($path);
 
         $type = $file->getType();
         $path = $file->getPath();

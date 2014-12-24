@@ -42,5 +42,15 @@ $I->assertFalse(array_key_exists('meme', $result));
 $I->assertFalse(array_key_exists('timestamp', $result));
 $I->assertFalse(array_key_exists('size', $result));
 
+/**
+ * Fetch the data of a file
+ */
+$I->sendGET('/apis/user/files/test/dummy.file', ['order'=>'load']);
+$result = $I->grabDataFromResponseByJsonPath('$.data')[0];
+
+$I->assertEquals('This is a test file. :)', $result);
+
+
+
 // clean up
 Flysystem::deleteDir("/users/{$user->id}");
