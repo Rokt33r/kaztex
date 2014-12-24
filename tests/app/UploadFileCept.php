@@ -1,26 +1,10 @@
-<?php 
+<?php
 $I = new AppTester($scenario);
 $I->am('a user');
-$I->wantTo('touch file system');
-
-/**
- * Only AUTHENTICATED user can access file system.
- */
-
-$I->sendGET('/apis/user/files');
-$I->seeResponseCodeIs(401);
+$I->wantTo('upload my file');
 
 // Logged in
 $user = $I->signedIn();
-
-/**
- * A user should have EMPTY storage when just signed up.
- */
-
-$I->sendGET('/apis/user/files');
-$result = $I->grabDataFromResponseByJsonPath('$')[0];
-$I->assertEmpty($result, 'The user should have empty storage when signed up');
-
 
 // set a dummy file
 $path = storage_path().'/files/dummy.file';
@@ -61,15 +45,6 @@ $result = $I->grabDataFromResponseByJsonPath('$')[0];
 
 $I->assertEquals(3, count($result), 'The user should have 2 files and 1 directory');
 
-/**
- * Return NULL value when the requested file NOT FOUND.
- */
-
-// fetch with wrong path
-$I->sendGET('/apis/user/files/null');
-$result = $I->grabDataFromResponseByJsonPath('$.file')[0];
-$I->seeResponseCodeIs(400);
-$I->assertNull($result, 'Null should be returned');
 
 /**
  * A user can DELETE a file or a directory.
@@ -81,4 +56,5 @@ $I->sendGET('/apis/user/files');
 $result = $I->grabDataFromResponseByJsonPath('$')[0];
 $I->assertEmpty($result, 'The storage should be empty.');
 
+// clean up
 Flysystem::deleteDir("/users/{$user->id}");
