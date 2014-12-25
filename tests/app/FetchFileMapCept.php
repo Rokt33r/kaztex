@@ -32,8 +32,27 @@ Flysystem::write("/users/{$user->id}/test/another.file", 'This is a test file. :
 
 $I->sendGET('/apis/user/files');
 $result = $I->grabDataFromResponseByJsonPath('$.files')[0];
-$I->assertEquals(3, count($result), 'Expect the size of array to be 3 because the user has 2 files and 1 directory.');
 
+$flags = [false, false, false];
+
+foreach($result as $file){
+    if($file['type']=='dir'){
+        if($file['subFiles'][0]['path'] == "users/{$user->id}/test/another.file"){
+            $flags[0] = true;
+        }
+        if($file['path'] == "users/{$user->id}/test"){
+            $flags[1] = true;
+        }
+
+    }
+    if($file['path'] == "users/{$user->id}/dummy.file"){
+        $flags[2] = true;
+    }
+}
+
+foreach($flags as $flag){
+    $I->assertTrue($flag);
+}
 
 // clean up
 Flysystem::deleteDir("/users/{$user->id}");

@@ -5,9 +5,25 @@ class UserFilesController extends BaseController{
     public function index(){
         $user = Auth::user();
 
-        $rootDir = Flysystem::listContents("users/{$user->id}", true);
+        $rootDirName = "users/{$user->id}";
 
-        return ['files'=>$rootDir];
+        $files = $this->fetchFileMap($rootDirName);
+
+
+        return ['files'=>$files];
+    }
+
+    public function fetchFileMap($path){
+        $files = Flysystem::listContents($path, false);
+        $result = [];
+        foreach($files as $file){
+            if($file['type']=='dir'){
+                $subFiles = $this->fetchFileMap($file['path']);
+                $file['subFiles'] = $subFiles;
+            }
+            array_push($result, array_only($file, ['type', 'path', 'basename', 'timestamp', 'size', 'subFiles']));
+        }
+        return $result;
     }
 
 
