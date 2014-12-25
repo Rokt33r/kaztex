@@ -42,36 +42,49 @@ class UserFilesController extends BaseController{
     }
 
     public function store($slag = ''){
-        $file = Input::file('file');
-        $stream = fopen($file->getPathName(), 'r+');
+        if(Input::get('mode') ==='upload'){
 
-        $name = $slag;
-        if(empty($name)){
-            $name = $file->getClientOriginalName();
+            $user = Auth::user();
+
+            $file = Input::file('file');
+
+            $filename = Input::get('filename');
+            if(empty($filename)){
+                $filename = $file->getClientOriginalName();
+            }
+
+            $dirname = Input::get('dirname');
+
+            if(!empty($slag)){
+                $dirname = $slag;
+            }
+
+            $path = "users/{$user->id}/{$dirname}/{$filename}";
+
+            $error = $this->fileManager->uploadFile($path, $file);
+            if($error){
+                return Response::make($error->getMessage(), 400);
+            }
+
+        }else{
+            $user = Auth::user();
+
+            $path = "users/{$user->id}/{$slag}";
+
+            Flysystem::write($path, Input::get('content'));
+
         }
 
-        $user = Auth::user();
-
-        Flysystem::writeStream("users/{$user->id}/{$name}", $stream);
-        fclose($stream);
         return ['message'=>'OK'];
     }
 
     public function destroy($slag){
         $user = Auth::user();
 
-        $name = $slag;
-        $path = "users/{$user->id}/{$name}";
+        $path = "users/{$user->id}/{$slag}";
 
-        if(!Flysystem::has($path)){
+        if(!$this->fileManager->deleteFile($path)){
             return Response::make(['file'=>null], 400);
-        }
-
-
-        if(Flysystem::get($path)->getType()==='dir'){
-            Flysystem::deleteDir("users/{$user->id}/{$name}");
-        }else{
-            Flysystem::delete("users/{$user->id}/{$name}");
         }
 
         return ['message'=>'OK'];

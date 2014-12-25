@@ -26,7 +26,6 @@ $result = $I->grabDataFromResponseByJsonPath('$.file')[0];
 
 $I->assertNotNull($result['type']);
 $I->assertNotNull($result['path']);
-$I->assertNotNull($result['mime']);
 $I->assertNotNull($result['timestamp']);
 $I->assertNotNull($result['size']);
 

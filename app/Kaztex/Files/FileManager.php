@@ -52,4 +52,42 @@ class FileManager {
 
         return $array[count($array)-1];
     }
+
+    public function deleteFile($path){
+        if(!Flysystem::has($path)){
+            return false;
+        }
+
+        if(Flysystem::get($path)->isDir()){
+            Flysystem::deleteDir($path);
+        }else{
+            Flysystem::delete($path);
+        }
+        return true;
+    }
+
+    public function uploadFile($path, $file){
+        $stream = fopen($file->getPathName(), 'r+');
+
+        try {
+            Flysystem::writeStream($path, $stream);
+        } catch (\Exception $e) {
+            fclose($stream);
+            return $e;
+        }
+        fclose($stream);
+        return false;
+    }
+
+    public function resolveDuplicateName($path){
+        $path_parts = pathinfo($path);
+
+        $ext = array_key_exists('extension', $path_parts)?'.'.$path_parts['extension']:'';
+
+        return "{$path_parts['dirname']}/{$path_parts['filename']} copy".$ext;
+    }
+
+    public function resolvePath($slag, $file){
+
+    }
 }
