@@ -1,0 +1,7 @@
+<li>
+    <i class="fa" ng-class="{'fa-file-o':file.type=='file', 'fa-folder':file.type=='dir'}"></i>
+    {{file.path}}
+    <ul ng-show="file.type==='dir'">
+        <li>files of the directory</li>
+    </ul>
+</li>

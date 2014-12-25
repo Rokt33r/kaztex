@@ -1,7 +1,13 @@
-<ul class="connection-list">
+<ul class="group-list">
     <li>My storage
         <ul>
-            <li ng-repeat="file in fileMap.currentUser">{{file.path}}</li>
+            <editor-side-bar-file file="file" ng-repeat="file in sidebar.fileMap.currentUser"></editor-side-bar-file>
+        </ul>
+    </li>
+
+    <li>My favorites
+        <ul class="file-list">
+            <!--<editor-side-bar-file file="{{file}}" ng-repeat="file in sidebar.fileMap.currentUser"></editor-side-bar-file>-->
         </ul>
     </li>
 

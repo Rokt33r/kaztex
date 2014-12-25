@@ -4,7 +4,8 @@ angular.module('kaztex.editor', [
 
 	'kaztex.core.file',
 
-	'kaztex.editor.canvas'
+	'kaztex.editor.canvas',
+	'kaztex.editor.sidebar'
 ])
 	.config(function($stateProvider){
 		$stateProvider.state('editor', {
@@ -15,16 +16,4 @@ angular.module('kaztex.editor', [
 	})
 	.controller('EditorController', function(){
 
-	})
-	.directive('editorSideBar', function(file){
-		return {
-			scope:{},
-			templateUrl:"editor/partials/editor-side-bar.tpl.html",
-			link:function(scope, element, attrs){
-				scope.fileMap = file.fileMap;
-				element.on('click',function(){
-					console.log(file.fileMap);
-				})
-			}
-		};
 	});

@@ -12,6 +12,17 @@
         bottom:0;
         width:280px;
         border-right:solid 1px $side-bar-border;
+        .group-list{
+            list-style:none;
+
+            .file-list{
+                margin:3px 0px;
+                transition:0.3s;
+                &.selected{
+                    background-color:$side-bar-selected-color;
+                }
+            }
+        }
     }
     .canvas{
         position:absolute;
