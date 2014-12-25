@@ -20,21 +20,20 @@
 <hr>
         <div class="about row">
             <div class="col-sm-6 col-sm-offset-3">
-                <h2>Spec</h2>
+                <h2>Specs</h2>
                 <p>powered by Laravel 4.2.* + Angular 1.3.*</p>
             </div>
             <div class="col-sm-6 col-sm-offset-3">
-                <h2>Author</h2>
+                <h2>Authors</h2>
                 <p>
                     Dick Choi &lt;dkchoi&commat;kazup.co&gt;<br>
                     Yokomizo Kazumasa
                 </p>
             </div>
             <div class="col-sm-6 col-sm-offset-3">
-                <h2>Contributor</h2>
+                <h2>Contributors</h2>
                 <p>
-                    Viling Venture Partners<br>
-                    Street Academy
+                    Viling Venture Partners
                 </p>
             </div>
 
