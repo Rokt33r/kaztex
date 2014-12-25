@@ -1,29 +1,23 @@
 <?php
 
+use Kaztex\Files\FileManager;
+
 class UserFilesController extends BaseController{
+
+    protected $fileManager;
+
+    public function __construct(FileManager $fileManager){
+        $this->fileManager = $fileManager;
+    }
 
     public function index(){
         $user = Auth::user();
 
-        $rootDirName = "users/{$user->id}";
+        $rootPath = "users/{$user->id}";
 
-        $files = $this->fetchFileMap($rootDirName);
-
+        $files = $this->fileManager->fetchFileMap($rootPath);
 
         return ['files'=>$files];
-    }
-
-    public function fetchFileMap($path){
-        $files = Flysystem::listContents($path, false);
-        $result = [];
-        foreach($files as $file){
-            if($file['type']=='dir'){
-                $subFiles = $this->fetchFileMap($file['path']);
-                $file['subFiles'] = $subFiles;
-            }
-            array_push($result, array_only($file, ['type', 'path', 'basename', 'timestamp', 'size', 'subFiles']));
-        }
-        return $result;
     }
 
 
@@ -32,27 +26,19 @@ class UserFilesController extends BaseController{
 
         $path = "users/{$user->id}/{$slag}";
 
-        if(!Flysystem::has($path)){
+        $file = $this->fileManager->fetchFile($path);
+
+        if(empty($file)){
             return Response::make(['file'=>null], 400);
         }
 
-        $file = Flysystem::get($path);
-
-        $type = $file->getType();
-        $path = $file->getPath();
-
-        if($type === 'file' && Input::get('order')==='load'){
+        if($file['type']==='file' && Input::get('order')==='load'){
             $data = Flysystem::read($path);
-            return ['data'=>$data];
+            return ['file'=>$file,'data'=>$data];
         }
 
-        if($type === 'file'){
-            $size = $file->getSize();
-            $mime = $file->getMimetype();
-            $timestamp = $file->getTimestamp();
-        }
+        return ['file'=>$file];
 
-        return ['file'=>compact('type', 'path', 'mime', 'timestamp', 'size')];
     }
 
     public function store($slag = ''){
