@@ -1,4 +1,11 @@
-angular.module('kaztex.editor', ['ui.router', 'ui.bootstrap', 'kaztex.core.file'])
+angular.module('kaztex.editor', [
+	'ui.router',
+	'ui.bootstrap',
+
+	'kaztex.core.file',
+
+	'kaztex.editor.canvas'
+])
 	.config(function($stateProvider){
 		$stateProvider.state('editor', {
 			templateUrl:'editor/editor.tpl.html',
