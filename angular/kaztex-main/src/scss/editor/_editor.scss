@@ -12,17 +12,20 @@
         bottom:0;
         width:280px;
         border-right:solid 1px $side-bar-border;
+        overflow:auto;
         .group-list{
             list-style:none;
-
-            .file-list{
-                margin:3px 0px;
-                transition:0.3s;
-                &.selected{
-                    background-color:$side-bar-selected-color;
+            padding-left:20px;
+            ul{
+                padding-left:20px;
+                list-style:none;
+                li{
+                    white-space:nowrap;
+                    padding:1px 0;
                 }
             }
         }
+
     }
     .canvas{
         position:absolute;

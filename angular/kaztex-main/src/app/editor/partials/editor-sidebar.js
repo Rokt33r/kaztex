@@ -17,11 +17,26 @@ angular.module('kaztex.editor.sidebar', [
 			}
 		};
 	})
-	.directive('editorSideBarFile', function(){
+	.directive('editorSideBarDir', function(){
+		return {
+			replace: true,
+			scope:{
+				files: '='
+			},
+			templateUrl:"editor/partials/editor-side-bar-dir.tpl.html",
+		}
+	})
+	.directive('editorSideBarFile', function($compile){
 		return{
 			scope:{
-				file:'=file'
+				file:'='
 			},
-			templateUrl:'editor/partials/editor-side-bar-file.tpl.html'
+			templateUrl:'editor/partials/editor-side-bar-file.tpl.html',
+			link:function(scope, element, attr){
+				if(scope.file.subFiles){
+					element.append('<editor-side-bar-dir files="file.subFiles"></editor-side-bar-dir>');
+					$compile(element.contents())(scope)
+				}
+			}
 		};
 	});
