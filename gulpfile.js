@@ -57,5 +57,5 @@ gulp.task('watch-css', function(){
 /**
  * Process All & Watch All
  **/
-gulp.task('watch', ['watch-ng', 'watch-css']);
+gulp.task('watch', ['copy', 'css', 'watch-ng', 'watch-css']);
 gulp.task('default', ['copy', 'css']);
