@@ -20,10 +20,10 @@ Route::group(['prefix'=>'apis', 'before'=>'auth.apis'], function(){
 
     Route::get('user/files', ['uses'=>'UserFilesController@index', 'as'=>'apis.files']);
 
-    Route::get('user/files/{slag}', ['uses'=>'UserFilesController@show', 'as'=>'apis.files'])->where('slag', '[A-Za-z\/\_\.0-9\s\-]+');
+    Route::get('user/files/{slag}', ['uses'=>'UserFilesController@show', 'as'=>'apis.files'])->where('slag', '.+');
 
-    Route::post('user/files/{slag?}', ['uses'=>'UserFilesController@store', 'as'=>'apis.files'])->where('slag', '[A-Za-z\/\_\.0-9\s\-]+');
+    Route::post('user/files/{slag?}', ['uses'=>'UserFilesController@store', 'as'=>'apis.files'])->where('slag', '.+');
 
-    Route::delete('user/files/{slag}', ['uses'=>'UserFilesController@destroy', 'as'=>'apis.files'])->where('slag', '[A-Za-z\/\_\.0-9\s\-]+');
+    Route::delete('user/files/{slag}', ['uses'=>'UserFilesController@destroy', 'as'=>'apis.files'])->where('slag', '.+');
 
 });

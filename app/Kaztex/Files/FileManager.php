@@ -18,6 +18,7 @@ class FileManager {
                 $subFiles = $this->fetchFileMap($file['path']);
                 $file['subFiles'] = $subFiles;
             }
+            $file['path'] = preg_replace('/^users\/[0-9]+\//','',$file['path']);
             array_push($result, array_only($file, ['type', 'path', 'basename', 'timestamp', 'size', 'subFiles']));
         }
         return $result;

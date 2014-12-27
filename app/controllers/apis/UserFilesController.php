@@ -32,13 +32,17 @@ class UserFilesController extends BaseController{
             return Response::make(['file'=>null], 400);
         }
 
-        if($file['type']==='file' && Input::get('order')==='load'){
-            $data = Flysystem::read($path);
+        if($file['type']==='file' && Input::get('mode')==='load'){
+            $data = base64_encode(Flysystem::read($path));
             return ['file'=>$file,'data'=>$data];
         }
 
         return ['file'=>$file];
 
+    }
+
+    function can_be_string($var) {
+        return $var === is_scalar($var) || is_callable([$var, '__toString']);
     }
 
     public function store($slag = ''){

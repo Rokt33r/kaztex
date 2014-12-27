@@ -1,6 +1,6 @@
 angular.module('kaztex.editor.sidebar', [
 	'kaztex.core.file'])
-	.controller('EditorSideBarController', function(file, $scope){
+	.controller('EditorSideBarController', function(file){
 		var sidebar = this;
 
 		sidebar.fileMap = file.fileMap;
@@ -9,9 +9,6 @@ angular.module('kaztex.editor.sidebar', [
 		};
 		console.log(sidebar);
 
-		$scope.$on('editor:fileSelected', function(e, path){
-			console.log(path);
-		});
 	})
 	.directive('editorSideBar', function(file){
 		return {
