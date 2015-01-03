@@ -32,7 +32,7 @@ class FileSys {
                 if($sub_file['type']=='dir'){
                     $sub_file = static::ls($sub_file['path']);
                 }
-                array_push($fetched_sub_files, $sub_file);
+                array_push($fetched_sub_files, array_only($sub_file, ['path', 'basename', 'type', 'size', 'timestamp']));
             }
             $result = [
                 'path'=>$file->getPath(),

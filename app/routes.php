@@ -18,6 +18,8 @@ Route::delete('sessions', ['uses'=>'SessionsController@destroy', 'as'=>'sessions
 Route::group(['prefix'=>'apis', 'before'=>'auth.apis'], function(){
     Route::get('user', ['uses'=>'UserController@index', 'as'=>'apis.user']);
 
+    Route::get('user/files/ls/{slag?}', ['uses'=>'UserFilesController@ls', 'as'=>'apis.user.files.ls']);
+
     Route::get('user/files', ['uses'=>'UserFilesController@index', 'as'=>'apis.files']);
 
     Route::get('user/files/{slag}', ['uses'=>'UserFilesController@show', 'as'=>'apis.files'])->where('slag', '.+');

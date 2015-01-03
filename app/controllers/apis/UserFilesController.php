@@ -4,12 +4,40 @@ use Kaztex\Files\FileManager;
 
 class UserFilesController extends BaseController{
 
+    /**
+     * @var FileManager
+     */
     protected $fileManager;
 
+    /**
+     * @param FileManager $fileManager
+     */
     public function __construct(FileManager $fileManager){
         $this->fileManager = $fileManager;
     }
 
+    /**
+     * Same as the unix command, 'ls'
+     * get a file or a directory information with the path
+     * @param string $path
+     * @return
+     */
+    public function ls($path = ''){
+
+        $user = Auth::user();
+        $rootPath = "users/{$user->id}";
+
+        $fileInfo = \Kaztex\Files\FileSys::ls($rootPath.$path);
+        if(empty($fileInfo)){
+            return Response::make(['error'=>'Invalid path'], 400);
+        }
+
+        return $fileInfo;
+    }
+
+    /**
+     * @return array
+     */
     public function index(){
         $user = Auth::user();
 
@@ -21,6 +49,10 @@ class UserFilesController extends BaseController{
     }
 
 
+    /**
+     * @param $slag
+     * @return array
+     */
     public function show($slag){
         $user = Auth::user();
 
@@ -41,10 +73,26 @@ class UserFilesController extends BaseController{
 
     }
 
+    /**
+     * @param $var
+     * @return bool
+     */
+    function test($var){
+        return true;
+    }
+
+    /**
+     * @param $var
+     * @return bool
+     */
     function can_be_string($var) {
         return $var === is_scalar($var) || is_callable([$var, '__toString']);
     }
 
+    /**
+     * @param string $slag
+     * @return array
+     */
     public function store($slag = ''){
         if(Input::get('mode') ==='upload'){
 
@@ -82,6 +130,10 @@ class UserFilesController extends BaseController{
         return ['message'=>'OK'];
     }
 
+    /**
+     * @param $slag
+     * @return array
+     */
     public function destroy($slag){
         $user = Auth::user();
 
