@@ -48,11 +48,13 @@ describe("kaztex.core.auth", function (){
 
 	it('should redirect when getting status 401', function(){
 		spyOn($location, 'path');
+		spyOn($rootScope, '$emit');
 
 		$httpBackend.expectGET('/apis/user')
 			.respond(401, {});
 		$httpBackend.flush();
 
+		expect($rootScope.$emit).not.toHaveBeenCalledWith('auth:userFetched');
 		expect($location.path).toHaveBeenCalledWith('/signin');
 	});
 
